@@ -7,8 +7,12 @@
 // @match        https://www.tcdb.com/*
 // @match        https://tcdb.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=tcdb.com
+// @homepageURL  https://github.com/Shpigford/tcdb-enhancerizer
+// @supportURL   https://github.com/Shpigford/tcdb-enhancerizer/issues
 // @grant        GM_xmlhttpRequest
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js
+// @updateURL    https://raw.githubusercontent.com/Shpigford/tcdb-enhancerizer/main/script.user.js
+// @downloadURL  https://raw.githubusercontent.com/Shpigford/tcdb-enhancerizer/main/script.user.js
 // ==/UserScript==
 
 (function () {
