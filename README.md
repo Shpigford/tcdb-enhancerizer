@@ -9,4 +9,4 @@ This is a userscript that enhances the functionality of the TCDb website. At the
 
 ## Screenshot
 
-![CleanShot 2023-12-18 at 15 40 28@2x](https://github.com/Shpigford/tcdb-enhancerizer/assets/35243/5c2543f1-a4a1-4092-90eb-23b658fac4a1)
+![TCDb Enhancerizer](https://github.com/Shpigford/tcdb-enhancerizer/assets/35243/5c2543f1-a4a1-4092-90eb-23b658fac4a1)
