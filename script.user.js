@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         TCDb Enhancer
+// @name         TCDb Enhancerizer
 // @namespace    https://tcdb.com/
 // @version      0.1
 // @description  Adds new tools to get more out of Trading Card Database!
