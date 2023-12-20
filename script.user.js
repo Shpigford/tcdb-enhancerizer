@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TCDb Enhancerizer
 // @namespace    https://tcdb.com/
-// @version      0.3
+// @version      0.4
 // @description  Adds new tools to get more out of Trading Card Database!
 // @author       Shpigford
 // @match        https://www.tcdb.com/*
@@ -19,26 +19,29 @@
   'use strict';
 
   // Limit to Transaction pages
-  if (window.location.href.indexOf("YourTransactions.cfm") > -1) {
+  if (window.location.href.indexOf("YourTransactions.cfm") > -1 || window.location.href.indexOf("TradeMatching.cfm") > -1) {
     // Make main content area full width.
 
     $('#content > div.col-md-9.nopadding').removeClass('col-md-9').addClass('col-md-12');
+    $('#content > div.col-md-8.nopadding').removeClass('col-md-8').addClass('col-md-12');
     $('#content > div.col-md-3.nopadding').remove();
+    $('#content > div.col-md-4.nopadding').remove();
 
     // Add bottom border to table rows
-    $('#content > div > div:nth-child(1) > table.table.table-bordered > tbody > tr:nth-child(2) > td:nth-child(1) > table.table.table-borderless.table-sm > tbody > tr').css('border-bottom', '1px solid #ddd');
-    $('#content > div > div:nth-child(1) > table.table.table-bordered > tbody > tr:nth-child(2) > td:nth-child(2) > table.table.table-borderless.table-sm > tbody > tr').css('border-bottom', '1px solid #ddd');
+    $('#content .col-md-12 table tr:nth-child(2) td:nth-child(1) table.table.table-borderless.table-sm tr, #table1 > tbody > tr').css('border-bottom', '1px solid #ddd');
+    $('#content .col-md-12 table tr:nth-child(2) td:nth-child(2) table.table.table-borderless.table-sm tr, #table2 > tbody > tr').css('border-bottom', '1px solid #ddd');
 
     // Alternate row colors
-    $('#content > div > div:nth-child(1) > table.table.table-bordered > tbody > tr:nth-child(2) > td:nth-child(1) > table.table.table-borderless.table-sm > tbody > tr:nth-child(even)').css('background-color', '#eee');
-    $('#content > div > div:nth-child(1) > table.table.table-bordered > tbody > tr:nth-child(2) > td:nth-child(2) > table.table.table-borderless.table-sm > tbody > tr:nth-child(even)').css('background-color', '#eee');
+    $('#content .col-md-12 table tr:nth-child(2) td:nth-child(1) table.table.table-borderless.table-sm tr:nth-child(even), #table1 > tbody > tr:nth-child(even)').css('background-color', '#eee');
+    $('#content .col-md-12 table tr:nth-child(2) td:nth-child(2) table.table.table-borderless.table-sm tr:nth-child(even), #table2 > tbody > tr:nth-child(even)').css('background-color', '#eee');
 
     // Build totals
     var total1 = 0;
     var total2 = 0;
 
-    var tableRows1 = $('#content > div.col-md-12.nopadding > div:nth-child(1) > table.table.table-bordered > tbody > tr:nth-child(2) > td:nth-child(1) > table.table.table-borderless.table-sm > tbody > tr');
-    var tableRows2 = $('#content > div.col-md-12.nopadding > div:nth-child(1) > table.table.table-bordered > tbody > tr:nth-child(2) > td:nth-child(2) > table.table.table-borderless.table-sm > tbody > tr');
+    var tableRows1 = $('#content .col-md-12 table tr:nth-child(2) td:nth-child(1) table.table.table-borderless.table-sm tr, #table1 > tbody > tr');
+
+    var tableRows2 = $('#content .col-md-12 table tr:nth-child(2) td:nth-child(2) table.table.table-borderless.table-sm tr, #table2 > tbody > tr');
 
     function calculateTotal(rows, total, callback) {
       var count = rows.length;
