@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TCDb Enhancerizer
 // @namespace    https://tcdb.com/
-// @version      0.4
+// @version      0.4.5
 // @description  Adds new tools to get more out of Trading Card Database!
 // @author       Shpigford
 // @match        https://www.tcdb.com/*
@@ -81,9 +81,9 @@
             price = price.toFixed(2);
 
             if (price == 0) {
-              row.append('<td style="text-align:right; color:gray;width:80px;">No price<br>' + wantlists + ' ' + fsft + '</td>');
+              row.append('<td style="width:70px;"><div class="rounded-1 text-center border" style="background-color:#F7F7F7;border-color:#f2f2f2"><div class="pt-1 lh-1" style="font-size:0.8rem;"><a href="' + priceLink + '" class="text-secondary">No price</a></div><div class="lh-1 p-1" style="font-size:0.8rem;">' + wantlists + ' ' + fsft + '</div></div></td>');
             } else {
-              row.append('<td style="text-align:right;width:80px;"><a href="' + priceLink + '" class="text-primary fw-bold">$' + price + '</a><br>' + wantlists + ' ' + fsft + '</td>');
+              row.append('<td style="width:70px;"><div class="rounded-1 text-center border" style="background-color:#F7F7F7;border-color:#f2f2f2"><div class="pt-1 lh-1" style="font-size:0.8rem;"><a href="' + priceLink + '" class="text-primary fw-bold">$' + price + '</a></div><div class="lh-1 p-1" style="font-size:0.8rem;">' + wantlists + ' ' + fsft + '</div></div></td>');
             }
 
             count--;
@@ -97,11 +97,11 @@
     }
 
     calculateTotal(tableRows1, total1, function (total) {
-      $('em:contains("item(s)")').eq(0).after("<strong class='float-end badge text-light bg-success'>Total: $" + total + "</strong>");
+      $('em:contains("item(s)")').eq(0).after("<strong class='float-end badge text-light bg-success' style='font-size:0.85rem'>Total: $" + total + "</strong>");
     });
 
     calculateTotal(tableRows2, total2, function (total) {
-      $('em:contains("item(s)")').eq(1).after("<strong class='float-end badge text-light bg-success'>Total: $" + total + "</strong>");
+      $('em:contains("item(s)")').eq(1).after("<strong class='float-end badge text-light bg-success' style='font-size:0.85rem'>Total: $" + total + "</strong>");
     });
   }
 })();
