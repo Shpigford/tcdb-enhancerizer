@@ -20,8 +20,8 @@
 
   // Limit to Transaction pages
   if (window.location.href.indexOf("YourTransactions.cfm") > -1 || window.location.href.indexOf("TradeMatching.cfm") > -1) {
-    // Make main content area full width.
 
+    // Make main content area full width.
     $('#content > div.col-md-9.nopadding').removeClass('col-md-9').addClass('col-md-12');
     $('#content > div.col-md-8.nopadding').removeClass('col-md-8').addClass('col-md-12');
     $('#content > div.col-md-3.nopadding').remove();
@@ -80,11 +80,10 @@
             // Append the price to the current row
             price = price.toFixed(2);
 
-            if (price == 0) {
-              row.append('<td style="width:70px;"><div class="rounded-1 text-center border" style="background-color:#F7F7F7;border-color:#f2f2f2"><div class="pt-1 lh-1" style="font-size:0.8rem;"><a href="' + priceLink + '" class="text-secondary">No price</a></div><div class="lh-1 p-1" style="font-size:0.8rem;">' + wantlists + ' ' + fsft + '</div></div></td>');
-            } else {
-              row.append('<td style="width:70px;"><div class="rounded-1 text-center border" style="background-color:#F7F7F7;border-color:#f2f2f2"><div class="pt-1 lh-1" style="font-size:0.8rem;"><a href="' + priceLink + '" class="text-primary fw-bold">$' + price + '</a></div><div class="lh-1 p-1" style="font-size:0.8rem;">' + wantlists + ' ' + fsft + '</div></div></td>');
-            }
+            var priceText = price == 0 ? 'No price' : '$' + price;
+            var priceClass = price == 0 ? 'text-secondary' : 'text-primary fw-bold';
+
+            row.append('<td style="width:70px;"><div class="rounded-1 text-center border" style="background-color:#F7F7F7;border-color:#f2f2f2"><div class="pt-1 lh-1" style="font-size:0.8rem;"><a href="' + priceLink + '" class="' + priceClass + '">' + priceText + '</a></div><div class="lh-1 p-1" style="font-size:0.8rem;">' + wantlists + ' ' + fsft + '</div></div></td>');
 
             count--;
             if (count === 0) {
@@ -96,12 +95,16 @@
       });
     }
 
+    function appendTotal(total, index) {
+      $('em:contains("item(s)")').eq(index).after("<strong class='float-end badge text-light bg-success' style='font-size:0.85rem'>Total: $" + total + "</strong>");
+    }
+
     calculateTotal(tableRows1, total1, function (total) {
-      $('em:contains("item(s)")').eq(0).after("<strong class='float-end badge text-light bg-success' style='font-size:0.85rem'>Total: $" + total + "</strong>");
+      appendTotal(total, 0);
     });
 
     calculateTotal(tableRows2, total2, function (total) {
-      $('em:contains("item(s)")').eq(1).after("<strong class='float-end badge text-light bg-success' style='font-size:0.85rem'>Total: $" + total + "</strong>");
+      appendTotal(total, 1);
     });
   }
 })();
